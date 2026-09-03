@@ -1,18 +1,58 @@
+/* * *********************************************************************
+ \file main.cpp
+
+ \brief Ce programme trouve la probabilité de gagner une mini loto.
+
+ \author   Tiré du livre "starting out with C++" de Tony Gaddis
+ \date     juillet 2016
+ \modif    Marie-Flavie Auclair-Fortier, octobre 2020
+ \version  2.0
+ ********************************************************************** * */
+
+
 #include <iostream>
+#include <iomanip>
+#include "module/module.h"
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+using namespace std;
 
-int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
+int main()
+{
 
-    const auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    // Declaration des fonctions
+    void entrerInfosTirage(int&, int&);
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "i = " << i << std::endl;
-    }
+    int nbChiffresTotaux;           // Le nombre total de chiffres
+    int nbChiffresAChoisir;         // Le nombre de chiffre à choisir
+    long int nbCombinaisons;        // Le nombre de combinaisons possibles
+
+    cout << "Ce programme vous donne la probabilite de gagner la \"loto UdeS\". \n";
+    entrerInfosTirage(nbChiffresTotaux, nbChiffresAChoisir);
+    nbCombinaisons = calculeNbCombinaisons(nbChiffresTotaux, nbChiffresAChoisir);
+
+    cout << fixed << showpoint << setprecision(4);
+    cout << "\nVotre chance de gagner la lotterie est de "<< "une chance sur " << nbCombinaisons << ".\n";
+    cout << "Ce qui equivaut a une probabilite de " << (1.0 / nbCombinaisons)    << "\n";
 
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
+}
+
+/* *****************************************************************
+
+ \brief Ce module permet de demander et d'entrer les informations du tirage au clavier
+
+ \param[out] s_nbChiffres : nb total de chiffres dans l'ensemble
+ \param[out] s_nbChiffresAChoisir : nb de chiffres a choisir dans cet ensemble
+ \post le nb total de chiffres devrait etre entre 1 et 12
+ \post le nb a choisir devrait etre entre 1 et le nb total de chiffre
+
+ ***************************************************************** */
+
+void entrerInfosTirage(int &s_nbChiffres, int &s_nbChiffresAChoisir)
+{
+    cout << endl << "Parmi combien de chiffres (1 à 12) devez-vous choisir? ";
+    cin  >> s_nbChiffres;
+
+    cout << "Combien de chiffre devez-vous choisir? ";
+    cin  >> s_nbChiffresAChoisir;
 }

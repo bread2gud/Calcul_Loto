@@ -12,7 +12,7 @@
 
 #include <iostream>
 #include <iomanip>
-#include "module/modules.h"
+#include "modules.h"
 
 using namespace std;
 
@@ -50,9 +50,23 @@ int main()
 
 void entrerInfosTirage(int &s_nbChiffres, int &s_nbChiffresAChoisir)
 {
-    cout << endl << "Parmi combien de chiffres (1 à 12) devez-vous choisir? ";
-    cin  >> s_nbChiffres;
+            cout << endl << "Parmi combien de chiffres (1 à 12) devez-vous choisir? ";
+            cin >> s_nbChiffres;
 
-    cout << "Combien de chiffre devez-vous choisir? ";
-    cin  >> s_nbChiffresAChoisir;
+            cout << "Combien de chiffres devez-vous choisir? ";
+            cin >> s_nbChiffresAChoisir;
+
+            if (cin.fail()) {
+                cin.clear();              // Réinitialise cin
+                cin.ignore(1000, '\n');   // Vide le buffer
+                cout << "Erreur : vous devez entrer des nombres entiers.\n";
+            }
+
+            if (s_nbChiffres < 1 || s_nbChiffres > 12) {
+                cout << "Erreur : le nombre total doit être entre 1 et 12.\n";
+            }
+
+            if (s_nbChiffresAChoisir < 1 || s_nbChiffresAChoisir > s_nbChiffres) {
+                cout << "Erreur : le nombre à choisir doit être entre 1 et " << s_nbChiffres << ".\n";
+            }
 }

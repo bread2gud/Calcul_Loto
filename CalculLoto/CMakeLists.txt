@@ -4,5 +4,5 @@ project(CalculLoto)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(CalculLoto main.cpp
-        module/modules.h
-        module/modules.cpp)
+        modules.h
+        modules.cpp)

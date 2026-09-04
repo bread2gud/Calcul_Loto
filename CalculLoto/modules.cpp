@@ -2,18 +2,17 @@
 
 #include <cassert>
 
-int factorielle(int n) {
+long int factorielle(int n) {
     assert(n >= 0);
-    assert(n <= 12);
+
     if (n==0) {
         return 1;
     }
     return n * factorielle(n-1) ;
 }
 
-int calculeNbCombinaisons(int n, int k) {
+long int calculeNbCombinaisons(int n, int k) {
     assert(n >= 0);
-    assert(n <= 12);
     assert(k >= 0);
     assert(k <= n);
     int comb =

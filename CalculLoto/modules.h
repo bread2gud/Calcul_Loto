@@ -39,7 +39,7 @@
  \post 0! = 1
 
  ***************************************************************** */
-int factorielle(int n);
-int calculeNbCombinaisons(int n, int k);
+long int factorielle(int n);
+long int calculeNbCombinaisons(int n, int k);
 
 #endif /* modules_h */

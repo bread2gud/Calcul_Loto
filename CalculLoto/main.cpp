@@ -9,7 +9,6 @@
  \version  2.0
  ********************************************************************** * */
 
-
 #include <iostream>
 #include <iomanip>
 #include "modules.h"
@@ -18,7 +17,6 @@ using namespace std;
 
 int main()
 {
-
     // Declaration des fonctions
     void entrerInfosTirage(int&, int&);
 
@@ -32,7 +30,7 @@ int main()
 
     cout << fixed << showpoint << setprecision(4);
     cout << "\nVotre chance de gagner la lotterie est de "<< "une chance sur " << nbCombinaisons << ".\n";
-    cout << "Ce qui equivaut a une probabilite de " << (1.0 / nbCombinaisons)    << "\n";
+    cout << "Ce qui equivaut a une probabilite de " << (1.0 / nbCombinaisons) << "\n";
 
     return 0;
 }
@@ -50,23 +48,25 @@ int main()
 
 void entrerInfosTirage(int &s_nbChiffres, int &s_nbChiffresAChoisir)
 {
-            cout << endl << "Parmi combien de chiffres (1 à 12) devez-vous choisir? ";
-            cin >> s_nbChiffres;
+    cout << endl << "Parmi combien de chiffres (1 à 12) devez-vous choisir? ";
+    cin >> s_nbChiffres;
 
-            cout << "Combien de chiffres devez-vous choisir? ";
-            cin >> s_nbChiffresAChoisir;
+    while (cin.fail() || s_nbChiffres < 1 || s_nbChiffres > 12) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Erreur : le nombre total doit être entre 1 et 12.\n";
+        cout << endl << "Parmi combien de chiffres (1 à 12) devez-vous choisir? ";
+        cin >> s_nbChiffres;
+    }
+    
+    cout << "Combien de chiffres devez-vous choisir? ";
+    cin >> s_nbChiffresAChoisir;
 
-            if (cin.fail()) {
-                cin.clear();              // Réinitialise cin
-                cin.ignore(1000, '\n');   // Vide le buffer
-                cout << "Erreur : vous devez entrer des nombres entiers.\n";
-            }
-
-            if (s_nbChiffres < 1 || s_nbChiffres > 12) {
-                cout << "Erreur : le nombre total doit être entre 1 et 12.\n";
-            }
-
-            if (s_nbChiffresAChoisir < 1 || s_nbChiffresAChoisir > s_nbChiffres) {
-                cout << "Erreur : le nombre à choisir doit être entre 1 et " << s_nbChiffres << ".\n";
-            }
+    while (cin.fail() || s_nbChiffresAChoisir < 1 || s_nbChiffresAChoisir > s_nbChiffres) {
+        cin.clear();
+        cin.ignore(1000, '\n');
+        cout << "Erreur : le nombre à choisir doit être entre 1 et " << s_nbChiffres << ".\n";
+        cout << "Combien de chiffres devez-vous choisir? ";
+        cin >> s_nbChiffresAChoisir;
+    }
 }
